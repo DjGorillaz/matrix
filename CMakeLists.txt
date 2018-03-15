@@ -8,7 +8,7 @@ add_executable(matrix main.cpp)
 
 add_executable(test_matrix test.cpp)
 
-set_target_properties(matrix library test_matrix PROPERTIES
+set_target_properties(matrix test_matrix PROPERTIES
         CXX_STANDARD 14
         CXX_STANDARD_REQUIRED ON
         COMPILE_OPTIONS -Wpedantic -Wall -Wextra
@@ -18,10 +18,6 @@ set_target_properties(test_matrix PROPERTIES
         COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK
         INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}
 )
-
-target_link_libraries(matrix library)
-
-target_link_libraries(test_matrix ${Boost_LIBRARIES} library)
 
 install(TARGETS matrix RUNTIME DESTINATION bin)
 

@@ -9,5 +9,14 @@ script:
 deploy:
   provider: script
   skip_cleanup: true
-  script:
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-7
+
+install:
+  - export CXX="g++-7"
+script:
   - curl -T matrix-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb -udjgorillaz:$BINTRAY_API_KEY "https://api.bintray.com/content/djgorillaz/otus-cpp/matrix/$TRAVIS_BUILD_NUMBER/matrix-0.0.$TRAVIS_BUILD_NUMBER-Linux.deb;deb_distribution=trusty;deb_component=main;deb_architecture=amd64;publish=1"
