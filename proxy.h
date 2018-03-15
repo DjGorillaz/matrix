@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstddef>
+#include <cassert>
 
 template<typename T, T d>
 class Matrix;
@@ -25,7 +26,7 @@ ProxyValue<T, d>::ProxyValue(const size_t &x_, const size_t &y_, Matrix<T, d>* m
     y(y_),
     m(m_)
 {
-    assert(x >= 0 && y >= 0);
+    assert((x >= 0 && y >= 0));
     auto value = m->map.find(std::make_pair(x,y));
     t = (value == m->map.end()) ? d : value->second;
 }
