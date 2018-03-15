@@ -19,6 +19,8 @@ set_target_properties(test_matrix PROPERTIES
         INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}
 )
 
+target_link_libraries(test_matrix ${Boost_LIBRARIES})
+
 install(TARGETS matrix RUNTIME DESTINATION bin)
 
 set(CPACK_GENERATOR DEB)
