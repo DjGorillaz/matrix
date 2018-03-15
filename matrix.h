@@ -14,7 +14,6 @@ class Matrix
 {
 public:
     Matrix() = default;
-    ProxyValue<T, d> at(const size_t x, const size_t y);
     std::size_t size();
     typename matrixMap<T>::iterator begin();
     typename matrixMap<T>::iterator end();
@@ -27,17 +26,6 @@ private:
     friend class ProxyValue<T, d>;
 };
 
-template<typename T, T d>
-ProxyValue<T, d> Matrix<T, d>::at(const std::size_t x, const std::size_t y)
-{
-    assert(x >= 0 && y >= 0);
-
-    auto val = map.find(std::make_pair(x,y));
-    if (val != map.end())
-        return ProxyValue<T, d>(x, y, val->second, this);
-    else
-        return ProxyValue<T, d>(x, y, d, this);
-}
 
 template<typename T, T d>
 std::size_t Matrix<T, d>::size()
